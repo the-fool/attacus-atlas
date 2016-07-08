@@ -10,6 +10,6 @@ export class BlogService {
   getPostings(): Observable<PostingMeta[]>  {
     console.log('Get postings');
     return this.http.get(this.postingsUrl)
-                    .map(res => res.json());
+                    .map(res => res.json().postings);
   }
 }
