@@ -30,7 +30,7 @@ export class Blog implements OnInit {
     })
   }
   gotoPosting(postingMeta: PostingMeta) {
-    const link = ['Posting', { dir: postingMeta.dir }];
-    console.log(link);
+    const link = ['/posting', postingMeta.dir];
+    this.router.navigate(link);
   }
 }

@@ -24,7 +24,14 @@ export const routes: RouterConfig = [
     ]
   },
   {
-    path: 'blog', component: 'Blog'
+    path: 'blog',
+    name: 'Blog',
+    component: 'Blog'
+  },
+  {
+    path: 'posting/:dir',
+    name: 'Posting',
+    component: 'Posting'
   },
   { path: '**', component: NoContent },
 ];
@@ -38,6 +45,7 @@ export const asyncRoutes: AsyncRoutes = {
   'About': require('es6-promise-loader!./about'),
   'Detail': require('es6-promise-loader!./+detail'),
   'Blog': require('es6-promise-loader!./blog'),
+  'Posting': require('es6-promise-loader!./blog/posting')
   'Index': require('es6-promise-loader!./+detail'), // must be exported with detail/index.ts
 };
 
@@ -46,6 +54,7 @@ export const asyncRoutes: AsyncRoutes = {
 // An array of callbacks to be invoked after bootstrap to prefetch async routes
 export const prefetchRouteCallbacks: Array<IdleCallbacks> = [
   asyncRoutes['About'],
+  asyncRoutes['Posting'],
   asyncRoutes['Detail'],
   asyncRoutes['Blog'],
   // es6-promise-loader returns a function

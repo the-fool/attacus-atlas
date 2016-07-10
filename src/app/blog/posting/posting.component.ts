@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'posting',
@@ -6,4 +7,13 @@ import { Component, Input } from '@angular/core';
     <h3>A posting</h3>
   `
 })
-export class Posting {}
+export class Posting implements OnInit {
+  constructor(
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    console.log(this.route);
+  }
+
+}
