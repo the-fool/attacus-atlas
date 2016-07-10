@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BlogService } from './blog.service';
 import { RecentList } from './recent-list';
+import { Archive } from './archive';
 
 
 @Component({
   selector: 'blog',
   templateUrl: 'blog.template.html',
   directives: [
-    RecentList
+    RecentList,
+    Archive
   ],
   providers: [
     BlogService
@@ -15,12 +18,19 @@ import { RecentList } from './recent-list';
 })
 export class Blog implements OnInit {
   private postings: PostingMeta[];
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private blogService: BlogService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.blogService.getPostings().subscribe(res => {
       this.postings = res;
       console.log(res);
     })
+  }
+  gotoPosting(postingMeta: PostingMeta) {
+    const link = ['Posting', { dir: postingMeta.dir }];
+    console.log(link);
   }
 }

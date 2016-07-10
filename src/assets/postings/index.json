@@ -3,6 +3,14 @@
     {
       "dir": "first",
       "name": "Post One"
+    },
+    {
+      "dir": "second",
+      "name": "Post Number Two"
+    },
+    {
+      "dir": "third",
+      "name": "The Third Post"
     }
   ]
 }

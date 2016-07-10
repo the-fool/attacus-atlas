@@ -1,2 +1,4 @@
 <h1>Da Blog</h1>
-<recent-list [postings]="postings"></recent-list>
+<recent-list [postings]="postings"
+(onClick)="gotoPosting($event)"></recent-list>
+<archive [postings]="postings"></archive>

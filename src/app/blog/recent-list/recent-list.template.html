@@ -1,6 +1,7 @@
 <h2>Recent posts</h2>
 <ul>
-  <li *ngFor="let posting of postings">
+  <li *ngFor="let posting of postings"
+  (click)="clickLink(posting)">
     {{ posting.name }}
   </li>
 </ul>
