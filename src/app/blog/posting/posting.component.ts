@@ -1,5 +1,5 @@
 import { Component, Injectable, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../blog.service';
 import { XLarge } from './x-large';
@@ -13,7 +13,6 @@ class PostingBodyBuilder {
       selector: 'posting-body',
       template: tmpl,
       directives: injectDirectives,
-      changeDetection: ChangeDetectionStrategy.OnPush
     })
     class PostingBody { };
     return PostingBody;
@@ -31,11 +30,12 @@ class PostingBodyBuilder {
   directives: [
     XLarge,
     Sector
-  ]
+  ],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Posting implements OnInit {
   private sectorNames: string[] = [];
-
+  private buffer: string[] = [];
   @ViewChild(
     'postingBody',
     { read: ViewContainerRef }
@@ -47,10 +47,14 @@ export class Posting implements OnInit {
     private blogService: BlogService,
     private componentResolver: ComponentResolver,
     private postingBodyBuilder: PostingBodyBuilder,
-    private sectorService: SectorService
+    private sectorService: SectorService,
+    private cd: ChangeDetectorRef
   ) {
     sectorService.sectorDeclared$.subscribe(name => {
       this.sectorNames.push(name);
+      if (name === 'END') {
+        this.cd.markForCheck();;
+      }
       console.log(`Got ${name}`);
     });
   }
