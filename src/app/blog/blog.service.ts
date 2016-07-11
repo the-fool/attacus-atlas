@@ -13,7 +13,7 @@ export class BlogService {
       .map(res => res.json().postings);
   }
 
-  fetchPosting(dir: String): Observable<String> {
+  fetchPosting(dir: string): Observable<string> {
     return this.http
       .get(`${this.postingsUrl}/${dir}/post.html`)
       .map(res => res.text())
