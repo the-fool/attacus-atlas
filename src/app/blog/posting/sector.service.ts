@@ -3,7 +3,6 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class SectorService {
-  public sectorNames: string[];
   private sectorDeclaredSource = new Subject<string>();
   private sectorSelectedSource = new Subject<string>();
 
@@ -16,9 +15,5 @@ export class SectorService {
 
   selectSector(tocEntry: string) {
     this.sectorSelectedSource.next(tocEntry);
-  }
-  
-  constructor() {
-    this.sectorNames = ['INIT'];
   }
 }

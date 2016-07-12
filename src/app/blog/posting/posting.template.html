@@ -1,7 +1,5 @@
 <h2>Table of Contents</h2>
-<ul>
-  <li *ngFor="let name of sectorNames" (click)="selectSector(name)">{{name}}</li>
-</ul>
+<index-list [index]="sectorNames"></index-list>
 <hr />
 <h3 aaSector="top">A posting</h3>
 <hr />

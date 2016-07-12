@@ -1,6 +1,8 @@
-import { Component, Injectable, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ChangeDetectorRef, ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { BlogService } from '../blog.service';
 import { XLarge } from './x-large';
 import { Sector } from './sector';
@@ -18,6 +20,18 @@ class PostingBodyBuilder {
     return PostingBody;
   }
 }
+@Component({
+  selector: 'index-list',
+  template: `
+    <ul>
+      <li *ngFor="let i of index">{{ i }}</li>
+    </ul>
+  `
+})
+class TodoList{
+  @Input() index: string[] = [];
+}
+
 
 @Component({
   selector: 'posting',
@@ -28,13 +42,14 @@ class PostingBodyBuilder {
     SectorService
   ],
   directives: [
+    TodoList,
     XLarge,
     Sector
   ],
-  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Posting implements OnInit {
   private sectorNames: string[] = [];
+  private todos$: Observable<string>;
   private buffer: string[] = [];
   @ViewChild(
     'postingBody',
@@ -48,14 +63,9 @@ export class Posting implements OnInit {
     private componentResolver: ComponentResolver,
     private postingBodyBuilder: PostingBodyBuilder,
     private sectorService: SectorService,
-    private cd: ChangeDetectorRef
   ) {
     sectorService.sectorDeclared$.subscribe(name => {
       this.sectorNames.push(name);
-      if (name === 'END') {
-        this.cd.markForCheck();;
-      }
-      console.log(`Got ${name}`);
     });
   }
 
