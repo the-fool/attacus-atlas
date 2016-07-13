@@ -134,6 +134,7 @@ module.exports = {
      */
     loaders: [
 
+      { test: /\.js$/, loaders: ['script'], exclude: /node_modules/ },
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
        *

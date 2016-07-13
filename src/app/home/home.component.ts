@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLarge } from './x-large';
-
+import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
+import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 @Component({
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
@@ -11,12 +12,15 @@ import { XLarge } from './x-large';
   selector: 'home',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
+
     Title
   ],
   // We need to tell Angular's compiler which directives are in our template.
   // Doing so will allow Angular to attach our behavior to an element
   directives: [
-    XLarge
+    XLarge,
+    AlertComponent,
+    ...DROPDOWN_DIRECTIVES
   ],
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [ ],

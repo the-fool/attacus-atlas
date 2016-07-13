@@ -9,26 +9,34 @@
   <div>
     <h1>Title: {{data.value}}</h1>
     <p x-large>Local State</p>
+    <alert type="info" dismissible="true">ng2-bootstrap works</alert>
+    <div (click)="$event.preventDefault()">
+      <!-- Simple dropdown -->
+      <span dropdown>
+        <a href id="simple-dropdown" dropdownToggle>
+          Click me for a dropdown, yo!
+        </a>
+        <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+          <li>
+            <a class="dropdown-item" href="#">wuht</a>
+          </li>
+        </ul>
+  </span>
+      <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
 
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+        <input [value]="localState.value" (input)="localState.value = $event.target.value" placeholder="Submit Local State to App State" autofocus>
 
-      <input
-        [value]="localState.value"
-        (input)="localState.value = $event.target.value"
-        placeholder="Submit Local State to App State"
-        autofocus>
-
-      <button md-raised-button color="primary">Submit Value</button>
-    </form>
-    <!--
+        <button md-raised-button color="primary">Submit Value</button>
+      </form>
+      <!--
         <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
         Rather than wiring up two-way data-binding ourselves with [value] and (input)
         we can use Angular's [(ngModel)] syntax
         <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
       -->
 
-    <pre>this.localState = {{ localState | json }}</pre>
+      <pre>this.localState = {{ localState | json }}</pre>
+
+    </div>
 
   </div>
-
-</div>
