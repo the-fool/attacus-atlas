@@ -18,7 +18,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Attacus Atlas',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
@@ -72,7 +72,7 @@ module.exports = {
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
-    extensions: ['', '.ts', '.js', '.json'],
+    extensions: ['', '.ts', '.js', '.json', '.styl'],
 
     // Make sure root is src
     root: helpers.root('src'),
@@ -173,12 +173,22 @@ module.exports = {
         test: /\.html$/,
         loader: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
+      },
+
+      {
+        test: /\.styl$/,
+        exclude: /node_modules/,
+        loaders: ['raw-loader', 'stylus-loader']
       }
 
     ]
 
   },
 
+  stylus: {
+    use: [require('nib')()],
+    import: ['~nib/lib/nib/index.styl']
+  },
   /*
    * Add additional plugins to the compiler.
    *

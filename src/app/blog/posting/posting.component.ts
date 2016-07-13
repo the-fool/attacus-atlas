@@ -2,12 +2,12 @@ import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { ChangeDetectionStrategy, ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-
+const style = require('./posting.styl');
 import { BlogService } from '../blog.service';
 import { XLarge } from './x-large';
 import { Sector } from './sector';
 import { SectorService } from './sector.service';
-
+console.log(style);
 @Injectable()
 class PostingBodyBuilder {
   public CreateComponent(tmpl: string, injectDirectives?: any[]) {
@@ -36,6 +36,7 @@ class TodoList{
 @Component({
   selector: 'posting',
   templateUrl: 'posting.template.html',
+  styles: [style],
   providers: [
     BlogService,
     PostingBodyBuilder,
@@ -62,7 +63,7 @@ export class Posting implements OnInit {
     private blogService: BlogService,
     private componentResolver: ComponentResolver,
     private postingBodyBuilder: PostingBodyBuilder,
-    private sectorService: SectorService,
+    private sectorService: SectorService
   ) {
     sectorService.sectorDeclared$.subscribe(name => {
       this.sectorNames.push(name);
