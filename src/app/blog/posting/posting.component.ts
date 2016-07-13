@@ -2,7 +2,7 @@ import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { ChangeDetectionStrategy, ComponentResolver, ComponentFactory, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-const style = require('./posting.styl');
+const style = require('./posting.style');
 import { BlogService } from '../blog.service';
 import { XLarge } from './x-large';
 import { Sector } from './sector';
@@ -24,8 +24,27 @@ class PostingBodyBuilder {
   selector: 'index-list',
   template: `
     <ul>
-      <li *ngFor="let i of index">{{ i }}</li>
+      <li *ngFor="let i of index"><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">{{i}}</button></li>
     </ul>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   `
 })
 class TodoList{

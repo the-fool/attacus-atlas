@@ -20,6 +20,10 @@ import '@angularclass/request-idle-callback';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+// bootstrap
+import 'jquery';
+import 'bootstrap-loader';
+
 if ('production' === ENV) {
   // Production
 
