@@ -7,7 +7,8 @@ import { BlogService } from '../blog.service';
 import { XLarge } from './x-large';
 import { Sector } from './sector';
 import { SectorService } from './sector.service';
-console.log(style);
+
+
 @Injectable()
 class PostingBodyBuilder {
   public CreateComponent(tmpl: string, injectDirectives?: any[]) {
