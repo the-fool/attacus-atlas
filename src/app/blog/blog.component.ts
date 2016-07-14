@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { BlogService } from './blog.service';
 import { RecentList } from './recent-list';
 import { Archive } from './archive';
@@ -10,7 +10,8 @@ import { Archive } from './archive';
   templateUrl: 'blog.template.html',
   directives: [
     RecentList,
-    Archive
+    Archive,
+    ...ROUTER_DIRECTIVES
   ],
   providers: [
     BlogService
