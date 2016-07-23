@@ -3,16 +3,16 @@ import { Component } from '@angular/core';
 import { VerticalNavigation } from '../../navigation';
 
 @Component({
-  selector: 'horizontal-layout',
+  selector: 'vertical-layout',
   directives: [VerticalNavigation],
   template: `
   <div class="container">
     <vertical-navigation></vertical-navigation>
-    <h1>Horizontal</h1>
+    <h1>Vertical</h1>
     <main>
       <router-outlet></router-outlet>
     </main>
   </div>
   `
 })
-export class HorizontalLayout{};
+export class VerticalLayout{};

@@ -1,10 +1,8 @@
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
-import { HorizontalLayout } from './core/layouts';
+import { HorizontalLayout, VerticalLayout } from './core/layouts';
 
 import * as Pages from './pages';
-
-import { Navigation } from './navigation';
 
 import { NoContent } from './no-content';
 
@@ -28,7 +26,7 @@ const layout = R.compose(
 
 const layouts = {
   'horizontal': HorizontalLayout,
-  'vertical' : null
+  'vertical' : VerticalLayout
 };
 console.log(layout);
 export const routes: RouterConfig = [
