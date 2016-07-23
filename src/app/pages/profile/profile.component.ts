@@ -7,8 +7,3 @@ import { Component } from '@angular/core';
   `
 })
 export class Profile{};
-
-export const navlink: Link = {
-  path: '/profile',
-  label: 'Profile'
-};

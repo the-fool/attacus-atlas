@@ -2,7 +2,7 @@ import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
 import { HorizontalLayout } from './core/layouts';
 
-import { Home, HomeNav, Profile, ProfileNav } from './pages';
+import * as Pages from './pages';
 
 import { Navigation } from './navigation';
 
@@ -15,8 +15,7 @@ import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blo
 import * as R from 'ramda';
 
 export const AppNavLinks: NavigationConfig = [
-  ...HomeNav,
-  ...ProfileNav
+  ...Pages.NavLinks
 ];
 
 const layout = R.compose(
@@ -24,8 +23,7 @@ const layout = R.compose(
     R.find<string>(
       R.compose(
         (s: string[]): boolean => s[0] === 'layout',
-        (s: string): string[] => s.split('=')
-      ))
+        (s: string): string[] => s.split('=')))
     )(R.split(';', document.cookie)) || 'horizontal';
 
 const layouts = {
@@ -38,14 +36,7 @@ export const routes: RouterConfig = [
     path: '',
     component: layouts[layout],
     children: [
-      {
-        path: 'home',
-        component: Home
-      },
-      {
-        path: 'profile',
-        component: Profile
-      }
+      ...Pages.Routes
     ]
   },
   // async components with children routes must use WebpackAsyncRoute

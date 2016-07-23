@@ -2,15 +2,14 @@ import { RouterConfig } from '@angular/router';
 
 import { Profile } from './profile.component';
 
-export const ProfileRoutes: RouterConfig = [
+export const Routes: RouterConfig = [
   {
-    path: '/profile',
+    path: 'profile',
     component: Profile,
-    outlet: 'page'
   }
 ];
 
-export const ProfileNav: NavigationConfig = [
+export const NavLinks: NavigationConfig = [
   {
     path: '/profile',
     label: 'Profile',

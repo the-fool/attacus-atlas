@@ -2,15 +2,14 @@ import { RouterConfig } from '@angular/router';
 
 import { Home } from './home.component';
 
-export const HomeRoutes: RouterConfig = [
+export const Routes: RouterConfig = [
   {
-    path: '/home',
+    path: 'home',
     component: Home,
-    outlet: 'page'
   }
 ];
 
-export const HomeNav: NavigationConfig = [
+export const NavLinks: NavigationConfig = [
   {
     path: '/home',
     label: 'Homie',
