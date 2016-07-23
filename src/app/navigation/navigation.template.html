@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-faded">
   <div class="nav navbar-nav">
-    <a class="nav-item nav-link" *ngFor="let i of navLinks" href="{{i.path}}">{{i.label}}</a>
+    <a class="nav-item nav-link" *ngFor="let i of navLinks" [routerLink]="[i.path]">{{i.label}}</a>
   </div>
 </nav>

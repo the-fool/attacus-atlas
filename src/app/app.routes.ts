@@ -12,23 +12,39 @@ import { DataResolver } from './app.resolver';
 
 import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blog.routing';
 
+import * as R from 'ramda';
+
 export const AppNavLinks: NavigationConfig = [
   ...HomeNav,
   ...ProfileNav
 ];
 
+const layout = R.compose(
+    (cookie: string): any => cookie ? R.split('=', cookie)[1] : cookie,
+    R.find<string>(
+      R.compose(
+        (s: string[]): boolean => s[0] === 'layout',
+        (s: string): string[] => s.split('=')
+      ))
+    )(R.split(';', document.cookie)) || 'horizontal';
+
+const layouts = {
+  'horizontal': HorizontalLayout,
+  'vertical' : null
+};
+
 export const routes: RouterConfig = [
-  { path: '',
-    component: HorizontalLayout,
+  {
+    path: '',
+    component: layouts[layout],
     children: [
-      { path: '',
-        outlet: 'navigation',
-        component: Navigation
+      {
+        path: 'home',
+        component: Home
       },
       {
-        path: '',
-        outlet: 'page',
-        component: Home
+        path: 'profile',
+        component: Profile
       }
     ]
   },
