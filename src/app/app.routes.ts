@@ -22,15 +22,15 @@ const layout = R.compose(
     (cookie: string): any => cookie ? R.split('=', cookie)[1] : cookie,
     R.find<string>(
       R.compose(
-        (s: string[]): boolean => s[0] === 'layout',
+        (s: string[]): boolean => s[0].trim() === 'layout',
         (s: string): string[] => s.split('=')))
-    )(R.split(';', document.cookie)) || 'horizontal';
+    )(R.split(';', document.cookie));
 
 const layouts = {
   'horizontal': HorizontalLayout,
   'vertical' : null
 };
-
+console.log(layout);
 export const routes: RouterConfig = [
   {
     path: '',

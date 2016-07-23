@@ -4,6 +4,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
+import { ThemePalette } from './core/theme-palette';
 
 /*
  * App Component
@@ -15,6 +16,7 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.style.css'
   ],
+  directives: [ThemePalette],
   template: `
     <router-outlet></router-outlet>
 
@@ -27,6 +29,7 @@ import { AppState } from './app.service';
         </a>
       </div>
     </footer>
+    <theme-palette></theme-palette>
   `
 })
 export class App {

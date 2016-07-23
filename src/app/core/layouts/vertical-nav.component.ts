@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
-import { HorizontalNavigation } from '../../navigation';
+import { VerticalNavigation } from '../../navigation';
 
 @Component({
   selector: 'horizontal-layout',
-  directives: [HorizontalNavigation],
+  directives: [VerticalNavigation],
   template: `
   <div class="container">
-    <horizontal-navigation></horizontal-navigation>
+    <vertical-navigation></vertical-navigation>
     <h1>Horizontal</h1>
     <main>
       <router-outlet></router-outlet>
