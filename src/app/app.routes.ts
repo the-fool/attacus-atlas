@@ -2,7 +2,8 @@ import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
 import { HorizontalLayout } from './core/layouts';
 
-import { Home } from './pages';
+import { Home, HomeNav, Profile, ProfileNav } from './pages';
+
 import { Navigation } from './navigation';
 
 import { NoContent } from './no-content';
@@ -10,6 +11,11 @@ import { NoContent } from './no-content';
 import { DataResolver } from './app.resolver';
 
 import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blog.routing';
+
+export const AppNavLinks: NavigationConfig = [
+  ...HomeNav,
+  ...ProfileNav
+];
 
 export const routes: RouterConfig = [
   { path: '',

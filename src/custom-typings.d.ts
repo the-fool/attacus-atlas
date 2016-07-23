@@ -46,6 +46,13 @@ import * as _ from 'lodash'
 declare var ENV: string;
 declare var HMR: boolean;
 
+type NavigationConfig = Link[];
+
+interface Link {
+  path: string;
+  label: string;
+}
+
 interface PostingMeta {
   name: string,
   dir: string
