@@ -6,13 +6,13 @@ const NAV_LINKS = new OpaqueToken('NAV_LINKS');
 @Injectable()
 export class NavigationService {
   constructor(
-    @Inject(NAV_LINKS) private navLinks: Link[]
+    @Inject(NAV_LINKS) private _navLinks: Link[]
   ) {
-    this.navLinks = R.sortBy(R.prop('order'))(navLinks);
+    this._navLinks = R.sortBy(R.prop('order'))(_navLinks);
   }
 
-  getConfig(): NavigationConfig {
-    return this.navLinks;
+  get links() {
+    return R.clone(this._navLinks);
   }
 }
 

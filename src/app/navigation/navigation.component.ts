@@ -12,6 +12,6 @@ export class Navigation implements OnInit {
   constructor(private navService: NavigationService) {}
 
   ngOnInit() {
-    this.navLinks = this.navService.getConfig();
+    this.navLinks = this.navService.links;
   }
 };
