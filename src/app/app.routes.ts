@@ -1,6 +1,10 @@
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
-import { Home } from './home';
+import { HorizontalLayout } from './core/layouts';
+
+import { Home } from './pages';
+import { Navigation } from './navigation';
+
 import { NoContent } from './no-content';
 
 import { DataResolver } from './app.resolver';
@@ -8,14 +12,19 @@ import { DataResolver } from './app.resolver';
 import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blog.routing';
 
 export const routes: RouterConfig = [
-  { path: '', component: Home },
-  { path: 'home', component: Home },
-  // make sure you match the component type string to the require in asyncRoutes
-  {
-    path: 'about', component: 'About',
-    resolve: {
-      'yourData': DataResolver
-    }
+  { path: '',
+    component: HorizontalLayout,
+    children: [
+      { path: '',
+        outlet: 'navigation',
+        component: Navigation
+      },
+      {
+        path: '',
+        outlet: 'page',
+        component: Home
+      }
+    ]
   },
   // async components with children routes must use WebpackAsyncRoute
   {
