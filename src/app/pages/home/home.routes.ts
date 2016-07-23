@@ -13,6 +13,7 @@ export const HomeRoutes: RouterConfig = [
 export const HomeNav: NavigationConfig = [
   {
     path: '/home',
-    label: 'Homie'
+    label: 'Homie',
+    order: 2
   }
 ];

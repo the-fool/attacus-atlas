@@ -51,6 +51,7 @@ type NavigationConfig = Link[];
 interface Link {
   path: string;
   label: string;
+  order?: number;
 }
 
 interface PostingMeta {

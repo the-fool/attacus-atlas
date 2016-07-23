@@ -1,4 +1,5 @@
 import { Injectable, OpaqueToken, Inject } from '@angular/core';
+const R = require('ramda');
 
 const NAV_LINKS = new OpaqueToken('NAV_LINKS');
 
@@ -7,7 +8,7 @@ export class NavigationService {
   constructor(
     @Inject(NAV_LINKS) private navLinks: Link[]
   ) {
-    this.navLinks;
+    this.navLinks = R.sortBy(R.prop('order'))(navLinks);
   }
 
   getConfig(): NavigationConfig {

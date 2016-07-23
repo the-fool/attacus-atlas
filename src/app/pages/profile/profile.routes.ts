@@ -13,6 +13,7 @@ export const ProfileRoutes: RouterConfig = [
 export const ProfileNav: NavigationConfig = [
   {
     path: '/profile',
-    label: 'Profile'
+    label: 'Profile',
+    order: 1
   }
 ];
