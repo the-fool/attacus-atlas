@@ -1,5 +1,5 @@
 import { Injectable, OpaqueToken, Inject } from '@angular/core';
-import * as R from 'ramda';
+import { sortBy, prop, clone } from 'ramda';
 
 const NAV_LINKS = new OpaqueToken('NAV_LINKS');
 
@@ -8,11 +8,11 @@ export class NavigationService {
   constructor(
     @Inject(NAV_LINKS) private _navLinks: Link[]
   ) {
-    //this._navLinks = R.sortBy<Link>(R.prop('order'), _navLinks);
+    this._navLinks = sortBy(prop('order'), _navLinks);
   }
 
   get links() {
-    return R.clone(this._navLinks);
+    return clone(this._navLinks);
   }
 }
 
