@@ -8,7 +8,7 @@ export class NavigationService {
   constructor(
     @Inject(NAV_LINKS) private _navLinks: Link[]
   ) {
-    this._navLinks = R.sortBy<Link>(R.prop('order'), _navLinks);
+    //this._navLinks = R.sortBy<Link>(R.prop('order'), _navLinks);
   }
 
   get links() {

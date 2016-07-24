@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NavigationService } from './navigation.service';
+const verticalStyle = require('./navigation.vertical.style.styl');
 
 @Component({
   selector: 'horizontal-navigation',
@@ -18,8 +19,9 @@ export class HorizontalNavigation implements OnInit {
 
 @Component({
   selector: 'vertical-navigation',
-  templateUrl: './navigation.template.html',
-  providers: [NavigationService]
+  templateUrl: './navigation.vertical.template.html',
+  providers: [NavigationService],
+  styles: [verticalStyle]
 })
 export class VerticalNavigation implements OnInit {
   navLinks: Link[];

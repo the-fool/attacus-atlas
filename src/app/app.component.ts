@@ -5,7 +5,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
 import { ThemePalette } from './core/theme-palette';
-
+const globalStyle = require('./app.styl');
 /*
  * App Component
  * Top Level Component
@@ -13,9 +13,7 @@ import { ThemePalette } from './core/theme-palette';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.style.css'
-  ],
+  styles: [globalStyle],
   directives: [ThemePalette],
   template: `
     <router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+<nav class="dark-bg" id="vertical-nav-inner">
+  <ul class="nav nav-sidebar">
+    <li *ngFor="let i of navLinks">
+      <a *ngIf="i.path" class="nav-item nav-link" [routerLink]="[i.path]">
+        <span class="nav-title">
+          {{i.label}}
+        </span>
+      </a>
+      <a *ngIf="!i.path" class="nav-item nav-link">
+        <span class="nav-title">
+          {{i.label}}
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>

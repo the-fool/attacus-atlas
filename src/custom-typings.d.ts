@@ -49,8 +49,9 @@ declare var HMR: boolean;
 type NavigationConfig = Link[];
 
 interface Link {
-  path: string;
+  path?: string;
   label: string;
+  children?: string[];
   order?: number;
 }
 
