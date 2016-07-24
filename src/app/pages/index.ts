@@ -9,8 +9,8 @@ export const Routes = [
 
 export const NavLinks: NavigationConfig = [
   {
-    label: 'Pages'
-    children: R.map(R.prop('label'), R.concat(Home.NavLinks, Profile.NavLinks)
+    label: 'Pages',
+    children: <string []>R.map(R.prop('label'), R.concat(Home.NavLinks, Profile.NavLinks))
   },
   ...Home.NavLinks,
   ...Profile.NavLinks
