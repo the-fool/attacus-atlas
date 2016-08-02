@@ -10,28 +10,23 @@ import { DataResolver } from './app.resolver';
 
 import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blog.routing';
 
-import * as R from 'ramda';
-import { prop, compose, split, find, trim, equals, nth } from 'ramda';
+import { prop, compose, split, find, trim, equals, nth, ifElse, identity } from 'ramda';
 
 export const AppNavLinks: NavigationConfig = [
   ...Pages.NavLinks
 ];
 
 const layout = compose(
-    (cookie: string): any => cookie ? R.split('=', cookie)[1] : cookie,
-    find(
-      compose(
-        equals('layout'),
-        trim,
-        nth(0),
-        split('=')
-      )), split(';')
-    )(document.cookie);
+    ifElse(identity, compose(nth(1), split('=')), identity),
+    find(compose(equals('layout'), trim, nth(0), split('='))),
+    split(';')
+  )(document.cookie);
+
 const layouts = {
   'horizontal': HorizontalLayout,
   'vertical' : VerticalLayout
 };
-console.log('*****************', layout);
+
 export const routes: RouterConfig = [
   {
     path: '',
