@@ -33,9 +33,7 @@ export class HorizontalNavigation implements OnInit {
         {{node.label}}
       </span>
     </a>
-    <ul *ngIf="node.isParent">
-      <nav-node *ngFor="let child of node.children"></nav-node>
-    </ul>
+    <ng-content></ng-content>
   </li>
   `
 })
@@ -57,5 +55,6 @@ export class VerticalNavigation implements OnInit {
 
   ngOnInit() {
     this.navLinks = this.navService.links;
+    console.log(this.navLinks);
   }
 };

@@ -1,8 +1,8 @@
 <nav class="dark-bg" id="vertical-nav-inner">
   <ul class="nav nav-sidebar">
-    <vertical-nav-node *ngFor="let i of navLinks" [node]="i">
-      <ul *ngIf="i.isParent">
-        <vertical-nav-node *ngFor="let child of i.children" [node]="child"></vertical-nav-node>
+    <vertical-nav-node *ngFor="let n of navLinks" [node]="n">
+      <ul *ngIf="n.isParent">
+        <vertical-nav-node *ngFor="let child of n.children" [node]="child"></vertical-nav-node>
       </ul>
     </vertical-nav-node>
   </ul>

@@ -1,6 +1,6 @@
 import { Injectable, OpaqueToken, Inject } from '@angular/core';
-import { sortBy, prop, clone } from 'ramda';
-import { curry, lensProp, map, ifElse, identity, both, has, not, compose, isEmpty, prop, filter } from 'ramda';
+import { both, compose, curry, filter, find, has, identity, ifElse,
+  isEmpty, lensProp, map, not, prop, propEq, set, sortBy } from 'ramda';
 const NAV_LINKS = new OpaqueToken('NAV_LINKS');
 
 @Injectable()
@@ -8,50 +8,25 @@ export class NavigationService {
   constructor(
     @Inject(NAV_LINKS) private _navLinks: Link[]
   ) {
-    const a = [
-      {
-        id: '1',
-        children: []
-      },
-      {
-        id: '2',
-        children: [
-          '1', '3'
-        ]
-      },
-      {
-        id: '3',
-        children: [
-          '4'
-        ]
-      },
-      {
-        id: '4',
-        children: ['5']
-      },
-      {
-        id: '5'
-      }
-    ];
+
     const sortByOrder = sortBy(prop('order'));
-    this._navLinks = sortByOrder(_navLinks);
     const childrenLens = lensProp('children');
-    const findById = curry((a, id) => find(propEq('id', id), a));
-    const setChildren = curry((a, parent) => set(
+    const findByLabel = curry((children: Link[], label) => find(propEq('label', label), children));
+    const setChildren = curry((population: Link[], parent: Link) => set(
       childrenLens,
-      map(compose(ifElse(isParent, setChildren(a), identity), findById(a)), parent.children),
-      parent)
-    );
+      sortByOrder(map(findByLabel(population), parent.children)),
+      parent));
+
     const isParent = both(
       has('children'),
       compose(not, isEmpty, prop('children'))
     );
-
-    map(setChildren(a), filter(isParent, a));
+    this._navLinks = sortByOrder(map(compose(setChildren(this._navLinks), set(lensProp('isParent'), true)), filter(isParent, _navLinks)));
+    console.log(this._navLinks)
   }
 
   get links() {
-    return clone(this._navLinks);
+    return this._navLinks;
   }
 }
 
