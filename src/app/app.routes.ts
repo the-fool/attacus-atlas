@@ -3,6 +3,8 @@ import { RouterConfig } from '@angular/router';
 import { HorizontalLayout, VerticalLayout } from './core/layouts';
 
 import * as Pages from './pages';
+import * as Layouts from './layouts';
+import * as Authentication from './authentication';
 
 import { NoContent } from './no-content';
 
@@ -12,8 +14,10 @@ import { routes as blogRoutes, asyncRoutes as blogAsyncRoutes } from './blog/blo
 
 import { prop, compose, split, find, trim, equals, nth, ifElse, identity } from 'ramda';
 
-export const AppNavLinks: NavigationConfig = [
-  ...Pages.NavLinks
+export const appNavLinks: NavigationConfig = [
+  ...Pages.navLinks,
+  ...Layouts.navLinks,
+  ...Authentication.navLinks,
 ];
 
 const layout = compose(
@@ -32,7 +36,8 @@ export const routes: RouterConfig = [
     path: '',
     component: layouts[layout],
     children: [
-      ...Pages.Routes
+      ...Pages.routes,
+      ...Authentication.routes
     ]
   },
   // async components with children routes must use WebpackAsyncRoute

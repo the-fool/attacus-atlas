@@ -51,7 +51,7 @@ type NavigationConfig = Link[];
 interface Link {
   path?: string;
   label: string;
-  children?: string[];
+  children?: Link[];
   order?: number;
 }
 

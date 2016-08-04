@@ -21,8 +21,12 @@ export class NavigationService {
       has('children'),
       compose(not, isEmpty, prop('children'))
     );
-    this._navLinks = sortByOrder(map(compose(setChildren(this._navLinks), set(lensProp('isParent'), true)), filter(isParent, _navLinks)));
-    console.log(this._navLinks)
+    this._navLinks = sortByOrder(
+      map<Link, Link>(
+        set(lensProp('isParent'), true),
+        filter(isParent, _navLinks))
+        );
+    console.log(this._navLinks);
   }
 
   get links() {

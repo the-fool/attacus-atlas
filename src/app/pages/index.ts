@@ -1,17 +1,14 @@
 import * as Home from './home';
 import * as Profile from './profile';
-import { concat, map, prop } from 'ramda';
 
-export const Routes = [
-  ...Home.Routes,
-  ...Profile.Routes
+export const routes = [
+  ...Home.routes,
+  ...Profile.routes
 ];
 
-export const NavLinks: NavigationConfig = [
+export const navLinks: NavigationConfig = [
   {
     label: 'Pages',
-    children:  <string []>map(prop('label'), concat(Home.NavLinks, Profile.NavLinks))
-  },
-  ...Home.NavLinks,
-  ...Profile.NavLinks
+    children: [ ...Home.navLinks, ...Profile.navLinks]
+  }
 ];
