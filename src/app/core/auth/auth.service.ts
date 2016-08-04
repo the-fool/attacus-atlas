@@ -4,11 +4,13 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
+    public redirectUrl: string;
     private loggedIn = false;
     private user: any = null;
 
     constructor(private http: Http) {
         this.loggedIn = !!localStorage.getItem('auth_token');
+   
     }
 
     login(email: string, password: string) {
@@ -19,7 +21,6 @@ export class AuthService {
             )
             .map(res => res.json())
             .map((res: any) => {
-                console.log(res);
                 if (res.success) {
                     localStorage.setItem('auth_token', res.auth_token);
                     this.loggedIn = true;
