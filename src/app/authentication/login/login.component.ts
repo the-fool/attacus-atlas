@@ -10,7 +10,8 @@ export class Login {
     constructor(
         private authService: AuthService
     ) {}
-    submitLogin(event) {
-        console.log(event);
+    submitLogin(msg) {
+        console.log(msg);
+        this.authService.login(msg.email, msg.password).subscribe(res => console.log(res));
     }
 };

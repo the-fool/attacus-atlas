@@ -14,17 +14,17 @@ export class AuthService {
     login(email: string, password: string) {
         return this.http
             .post(
-                'http://127.0.0.1:3000/login',
+                'http://127.0.0.1:3030/login',
                 JSON.stringify({email, password})
             )
-            .map(res => res.json)
+            .map(res => res.json())
             .map((res: any) => {
                 console.log(res);
                 if (res.success) {
                     localStorage.setItem('auth_token', res.auth_token);
                     this.loggedIn = true;
                 }
-                return res.success;
+                return res;
             });
     }
 
