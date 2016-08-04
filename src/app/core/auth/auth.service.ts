@@ -10,7 +10,6 @@ export class AuthService {
 
     constructor(private http: Http) {
         this.loggedIn = !!localStorage.getItem('auth_token');
-   
     }
 
     login(email: string, password: string) {
